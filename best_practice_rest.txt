@@ -1,0 +1,135 @@
+
+                                    Best Practices for REST APIs
+
+
+1.  Accept and Respond in JSON
+
+    1.  Rest APIs should accept payload in JSON and send response in JSON.
+
+    2.  JSON - JavaScript object notation. Best Way of transfering data between two system.
+
+    3.  Other way is xml, but not usually accepted now a days.
+
+    4.  To make sure, accept and respond in JSON. We need to set content-type as application/json.
+
+
+2.  Use nouns instead of verbs in endpoint paths.
+    
+    1.  We shouldn’t use verbs in our endpoint paths. Instead, we should use the nouns.
+
+    2.  This is because our HTTP request method already has the verb like (get, post, put, delete, put etc.) 
+
+    3.  Examples :-
+        1.  GET /articles/ for getting news articles.
+        2.  POST /articles/ is for adding a new article.
+        3.  PUT /articles/:id is for updating the article with the given id.
+        4.  DELETE /articles/:id is for deleting an existing article with the given ID.
+
+
+3.  Use logical nesting on endpoints
+
+    1.  it makes sense to group those that contain associated information.
+
+    2.  That is, if one object can contain another object, you should design the endpoint to reflect that.
+
+    3.  Examples :- /articles/:articleId/comments
+
+
+4.  Handle errors gracefully and return standard error codes.
+    
+    1.  To eliminate confusion at client end, We should handle errors gracefully and return proper error codes.
+
+    2.  Proper error codes means -> Code which tells what kind of error it is.
+
+    3.  Error code family
+        1.  400 family (client side error)
+            1.  400 - bad request.
+            2.  401 - unauthorized. 
+            3.  403 - forbidden (not allowed to access).
+            4.  404 - not founc
+
+        2.  500 family (server side error)
+            1.  500 - Internal server error.
+            2.  502 - bad gateway
+
+
+5.  Allow filtering, sorting, and pagination.
+
+    1.  The database which apis need to connect for data, can get very large.
+
+    2.  Sometime it would very bad if we return all data in one go. It can slow down our system and hit the performance very badly.
+
+    3.  That's why we need to allow or design these feature (filtering, sorting and pagination).
+
+    4.  Pagination can be very helpful to limit the data while requesting and responding both.
+
+    5.  We can implement pagination by, using limit and offset and ask details in request.query.
+            Example :->     /employees?lastName=Smith&age=30
+
+    6. We can also specify which fields to sort. Check below Example
+            Example :->     http://example.com/articles?sort=+author,-datepublished
+                            + means increasing
+                            - means decreasing
+
+
+6.  Maintain good security practices
+    
+    1.  http is not secure. Anyone having network traffic control can read our request and response.
+
+    2.  They can read our data using applications like wireShark.
+
+    3.  Https uses ssl and tsl protocol to establish our http connection.
+
+    4.  tsl is latest version of ssl.
+
+    5.  Digital certificate -> used to verify server's ownership prior to sending encrypted data.
+    
+    6.  Certificate Authority -> a trusted org. that issued a digial certificates.
+
+    7.  Our computer trusts these CA.
+
+    8.  We can use CA signed certificates (useful in prod "lets encrypt" is a CA ) or self signed certificates (usefule in dev env).
+
+    9.  For dev env or self signed certificates, We can use openssl (command line tool).
+
+    10. openssl used generate private keys, create CSRs(certificate signed request), install your SSL/TLS certificate, and identify certificate information.
+            Command :->     openssl req -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
+    
+    11. There is package called helmet in node js Which help in securing http headers.
+
+    12. It prevents attacks like Cross-Site-Scripting(XSS -> malicious executable scripts) , clickjacking, etc.
+
+    13. We can use helmet as middleware for every request. ( app.use(helmet()) )
+
+
+7.  Cache data to improve performance
+
+    1.  We can cache the data or response, instead of querying to database again to again.
+
+    2.  We can use caching solutions like redis (in memoring caching).
+
+    3.  Express has the apicache middleware to add cache to our application.
+            const apicache = require('apicache');
+            let cache = apicache.middleware;
+            app.use(cache('2 second'));
+    
+    4.  If we are using caching, we should cache-control info into headers. This will help users to use caching more effectively.
+
+
+8.  Versioning our APIs
+
+    1.  We should version our apis in case of any changes to apis.
+
+    2.  This will insure, it's not breaking other cliens.
+
+    3.  Example :- 
+            1.  /v1/employees  
+            2.  /v2/employees  
+
+
+9.  Use standard UTC dates
+
+    1.  {
+            "createdAt": "2022-03-08T19:15:08Z"
+        }
+
