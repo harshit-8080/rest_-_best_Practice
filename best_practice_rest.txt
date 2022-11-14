@@ -133,3 +133,30 @@
             "createdAt": "2022-03-08T19:15:08Z"
         }
 
+10.  Embrace Rate Limiting
+        1.  npm i express-rate-limit
+        2.  import rateLimit from 'express-rate-limit'
+        3.  const apiLimiter = rateLimit({
+                windowMs: 15 * 60 * 1000, // 15 minutes
+                max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+                message:"too many request from this ip"
+                standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+                legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+            })
+        4.  app.use('/api/', apiLimiter)
+
+
+11. Black-Box Test your Node.js REST APIs
+        1.  Black-box testing is a method of testing where the functionality of an application is examined without the knowledge of its internal structures or workings.
+        2.  One the npm module which can help you in black box testing is 'supertest'
+        3.  npm i supertest
+        4.  const request = require('supertest');
+        5.  request(app)
+                .get('/user')
+                .expect('Content-Type', /json/)
+                .expect('Content-Length', '15')
+                .expect(200)
+                .end(function(err, res) {
+                    if (err) throw err;
+            });            
+
