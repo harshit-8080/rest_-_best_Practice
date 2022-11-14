@@ -1,0 +1,34 @@
+                                What is Rest ? (design style for a API)
+
+
+1.  REST is a set of architectural constraints or design style for a API not a protocol or a standard.
+
+2.  REST is developed by Roy Fielding.
+
+3.  REST - Representational state transer
+
+4.  In Rest design, Connections between client and server is stateless As a result client need to send every single detail to server to servve the request.
+
+5.  Client need to transfer state of resource to server to serve the request.
+
+6.  Rest uses or written over http protocol.
+
+7.  Since it uses http, it's stateless but cacheable.
+
+   
+
+-=-=-===-=---=-=-=-=--=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-==-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+
+
+                                    What is Rest API ?
+
+
+1.  REST APIs are one of the most common types of web services available today for client and server communication.
+
+2.  They allow various clients such as browser, mobile app, desktop apps with a internet connection to communicate with server.
+
+
+
+-=-=-===-=---=-=-=-=--=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-==-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
