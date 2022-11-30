@@ -13,7 +13,7 @@
     4.  To make sure, accept and respond in JSON. We need to set content-type as application/json.
 
 
-2.  Use nouns instead of verbs in endpoint paths.
+2.  Use nouns instead of verbs in endpoint paths and in plural not singular.
     
     1.  We shouldn’t use verbs in our endpoint paths. Instead, we should use the nouns.
 
